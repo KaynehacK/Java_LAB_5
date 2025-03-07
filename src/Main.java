@@ -23,9 +23,9 @@ public class Main {
         out.println("Простолупов Р.Г. | ИТ-11 (ПМИ-1) | ЛАБОРАОРНАЯ РАБОТА №5 | Вариант 4\nВведите код задания в сответствии с таблицей (при вводе иного значения программа завершит работу):");
         while (!stop) {
             out.printf(
-                    "\t\t\t\t,___________________________,\n" +
-                            "Код задания:\t| 1 | 2 | 3 | 4 | 5 | 6 | 7 |\n" +
-                            "Номер задания:\t|1.1|1.3|2.2|3.1|3.2|3.3|3.4|\n" +
+                    "\t\t\t\t,_______________________________,\n" +
+                            "Код задания:\t| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\n" +
+                            "Номер задания:\t|1.1|2.1|3.4|4.4|5.4|6.4|7.1|7.2|\n" +
                             "Ввод: ");
             switch (in.nextInt()) {
                 case 1: {
@@ -57,7 +57,7 @@ public class Main {
                     out.println("Задание 3.1: Список. Вставить все элементы список после первого вхождения заданного значения.");
                     in.nextLine();
                     out.println("Введите исходный список целых чисел через пробел (не меньше одного элемента): ");
-                    List<Integer> L = new ArrayList<>(Arrays.stream(in.nextLine().split(" ")).map(Integer::parseInt).toList());
+                    List<Integer> L = new ArrayList<>(Arrays.stream(in.nextLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList()));
                     out.println("Введите искомое значение: ");
                     int E = in.nextInt();
                     int index = L.indexOf(E);
@@ -72,7 +72,7 @@ public class Main {
                 }
                 case 4: {
                     out.println("Задание 4.4: Мап. Вывести имена всех студентов, набравших не менее 30 баллов по каждому из экзаменов.");
-                    StudentListInterface studentList = openStudentList("C:\\Documents\\Работы\\Университет\\Java\\Lab5\\src\\StudentList\\Exams.txt");
+                    StudentListInterface studentList = openStudentList("src/StudentList/Exams.txt");
                     out.println("Исходный список: ");
                     for (String i : studentList.getStudentList()) {
                         out.println("\t" + i);
@@ -87,7 +87,7 @@ public class Main {
                     out.println("Задание 5.4: Сет. Напечатать в алфавитном порядке все глухие согласные буквы, которые входят в каждое нечетное слово текста из файла.");
                     Set<Character> letters = Set.of('п', 'ф', 'к', 'т', 'ш', 'щ', 'с', 'х', 'ц', 'ч',
                             'П', 'Ф', 'К', 'Т', 'Ш', 'Щ', 'С', 'Х', 'Ц', 'Ч');
-                    Article article = new Article("C:\\Documents\\Работы\\Университет\\Java\\Lab5\\src\\Text\\Text.txt");
+                    Article article = new Article("src/Text/Text.txt");
 
                     out.println("Исходный текст:\n" + article);
                     out.println("Извлечение указанных букв в алфавитном порядке:\n" + article.searchLetters(letters));
@@ -116,16 +116,16 @@ public class Main {
                             .sorted(Comparator.comparingDouble(Point::getX))
                             .map(p -> new Point(p.getX(), Math.abs(p.getY())))
                             .distinct()
-                            .toList()
+                            .collect(Collectors.toList())
                     );
                     out.println("Из обработанного списка точек сформирован Polyline: " + line);
                     break;
                 }
                 case 8: {
                     out.println("Задание 7.2: Стрим для обработки файла.");
-                    String path = "C:\\Documents\\Работы\\Университет\\Java\\Lab5\\src\\Text\\File1.txt";
+                    String path = "src/Text/File1.txt";
                     out.println("Исходный файл:");
-                    for (String i : Files.lines(Paths.get(path)).toList()) { out.println("\t" + i); }
+                    for (String i : Files.lines(Paths.get(path)).collect(Collectors.toList())) { out.println("\t" + i); }
                     Map<Integer, List<String>> groupedPeople = Files.lines(Paths.get(path))
                             .map(String::trim)
                             .filter(line -> line.contains(":"))

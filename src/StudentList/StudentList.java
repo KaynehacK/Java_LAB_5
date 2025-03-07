@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class StudentList implements StudentListInterface {
     List<List<String>> studentList;
@@ -14,8 +15,8 @@ public class StudentList implements StudentListInterface {
                 .readAllLines(Paths.get(path))
                 .stream()
                 .skip(1)
-                .map(s -> Arrays.stream(s.split(" ")).toList())
-                .toList();
+                .map(s -> Arrays.stream(s.split(" ")).collect(Collectors.toList()))
+                .collect(Collectors.toList());
         studentMap = new HashMap<>() {{
             put(true, new ArrayList<>());
             put(false, new ArrayList<>());
@@ -26,7 +27,7 @@ public class StudentList implements StudentListInterface {
     }
 
     public List<String> getStudentList() {
-        return studentList.stream().map(i -> String.join(" ",i)).toList();
+        return studentList.stream().map(i -> String.join(" ",i)).collect(Collectors.toList());
     }
 
     public List<String> getStudentMap(Boolean b) throws IOException {

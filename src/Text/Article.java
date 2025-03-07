@@ -9,7 +9,7 @@ public class Article {
     private String content;
 
     public Article(String path) throws IOException {
-        content = Files.readString(Paths.get("C:\\Documents\\Работы\\Университет\\Java\\Lab5\\src\\Text\\Text.txt"));
+        content = Files.readString(Paths.get(path));
     }
 
     public String searchLetters(Set<Character> letters) throws IOException {

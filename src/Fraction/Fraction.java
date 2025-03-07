@@ -52,7 +52,10 @@ public class Fraction implements FractionInterface {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Fraction other) return numerator == other.numerator && denominator == other.denominator;
+        if (obj instanceof Fraction) {
+            Fraction other = (Fraction) obj;
+            return numerator == other.numerator && denominator == other.denominator;
+        }
         else return false;
     }
 
